@@ -1,0 +1,20 @@
+package my_first_pkg;
+
+import java.util.Scanner;
+
+public class My_First_Class {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int a;
+		String str;
+		Scanner s = new Scanner(System.in);
+		System.out.println("Enter a string");
+		str = s.nextLine(); 
+		System.out.println("Enter a number");
+		a = s.nextInt();
+		System.out.println("You entered string: " + str + " and the number: " + a);
+
+	}
+
+}
