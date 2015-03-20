@@ -1,0 +1,10 @@
+package my_first_pkg;
+
+public class My_First_Class {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
