@@ -1,0 +1,15 @@
+#Mapping from interval to its SEMI TONE offset from the root
+#Taking care of intervals above 7 must be handled in code by
+#converting to one of these intervals. The +/- remains, but
+#the interval value will change accordingly
+#Also, the direction must be inferred from the sign. For ex.
+#1- -> 11, but it really is -1, leading to the lower octave.
+#PROBABLY NEED ANOTHER MAP FROM No. of Semi-tones -> Name of interval
+1  -> 0
+2  -> 2
+3  -> 4
+4  -> 5
+5  -> 7
+6  -> 9
+7  -> 11
+8  -> 12
