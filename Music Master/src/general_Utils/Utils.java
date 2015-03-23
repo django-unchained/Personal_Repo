@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import canonical_types.Interval;
 
@@ -24,12 +25,75 @@ public class Utils {
 	public static HashMap<Integer,Integer> interval_to_offset = new HashMap<Integer, Integer>();
 	public static HashMap<String, ArrayList<Interval>> chord_type_to_formula = new HashMap<String, ArrayList<Interval>>();
 	public static HashMap<String, ArrayList<Interval>> scale_type_to_formula = new HashMap<String, ArrayList<Interval>>();
+	//Maps an index to possible notes that can map to that index
+	public static HashMap<Integer, HashSet<String>> index_to_note = new HashMap<Integer, HashSet<String>>();
+	//Maps a note to its index
+	public static HashMap<String, Integer> note_to_index = new HashMap<String, Integer>();
+	
+	///////////////////TO DO!!///////////////////
+	//Add another hash set for converting E+ to F
+	//as per convention
 	
 	public static void init_Variables()
 	{
 		read_Intervals();				
 		read_Chords();	
 		read_Scales();
+		init_index_maps();
+	}
+	
+	
+	
+	private static HashSet<String> get_hash_set(String...strings)
+	{
+		HashSet<String> set = new HashSet<String>();
+		for(String str : strings)
+		{
+			set.add(str);
+		}
+		return(set);
+	}
+	
+	private static void init_index_maps()
+	{
+		//Initializing index to note map
+		index_to_note.put(0, get_hash_set("C","B+"));//C
+		index_to_note.put(1, get_hash_set("C+","D-"));//C#
+		index_to_note.put(2, get_hash_set("D"));//D
+		index_to_note.put(3, get_hash_set("D+","E-"));//Eb
+		index_to_note.put(4, get_hash_set("E","F-"));//E
+		index_to_note.put(5, get_hash_set("E+","F"));//F
+		index_to_note.put(6, get_hash_set("F+","G-"));//F#
+		index_to_note.put(7, get_hash_set("G"));//G
+		index_to_note.put(8, get_hash_set("G+","A-"));//G#
+		index_to_note.put(9, get_hash_set("A"));//A
+		index_to_note.put(10, get_hash_set("A+","B-"));//A#
+		index_to_note.put(11, get_hash_set("B","C-"));//B	
+		
+		//Initializing note to index map
+		note_to_index.put("C", 0);
+		note_to_index.put("B+", 0);
+		note_to_index.put("C+", 1);
+		note_to_index.put("D-", 1);
+		note_to_index.put("D", 2);
+		note_to_index.put("D+", 3);
+		note_to_index.put("E-", 3);
+		note_to_index.put("E", 4);
+		note_to_index.put("F-", 4);
+		note_to_index.put("F", 5);
+		note_to_index.put("E+", 5);
+		note_to_index.put("F+", 6);
+		note_to_index.put("G-", 6);
+		note_to_index.put("G", 7);
+		note_to_index.put("G+", 8);
+		note_to_index.put("A-", 8);
+		note_to_index.put("A", 9);
+		note_to_index.put("A+", 10);
+		note_to_index.put("B-", 10);
+		note_to_index.put("B", 11);
+		note_to_index.put("C-", 11);
+		
+		
 	}
 	
 	private static void read_Scales()

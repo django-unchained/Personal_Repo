@@ -1,5 +1,7 @@
 package canonical_types;
 
+import java.util.HashSet;
+
 import general_Utils.Utils;
 
 public class Interval {
@@ -10,8 +12,13 @@ public class Interval {
 	private int offset_from_root = 0;
 	private String tonic;
 	private int octave_offset = 0;
+	private String interval_note;
 	
-    //To handle any increasing interval
+	
+	///////////////////////TO DO!!/////////////////////
+	//Add constructors that allow you to specify the tonic/interval_note and infer the other appropriately
+
+	//To handle any increasing interval
 	public Interval(String s_interval)
 	{
 		//Assumes intervals ONLY hold upwards in this constructor
@@ -101,6 +108,8 @@ public class Interval {
 		this.offset_from_root = (Utils.interval_to_offset.get(this.interval) + modifier + this.octave_offset * 12);
 	}
 	
+	
+	
 	public String getTonic() {
 		return tonic;
 	}
@@ -108,6 +117,14 @@ public class Interval {
 
 	public void setTonic(String tonic) {
 		this.tonic = tonic;
+	}
+	
+    public String getInterval_note() {
+		return interval_note;
+	}
+
+	public void setInterval_note(String interval_note) {
+		this.interval_note = interval_note;
 	}
 
 
@@ -157,11 +174,28 @@ public class Interval {
     	return("Interval " + this.getInterval() + " " + disp_modifier + " which is " + this.getOffset_from_root() + " semitones from the root");
     }
     
+    
+    
+    /////////////////////////////TO DO!!///////////////////////////
+    //Add logic here to normalize the name of the note returned i.e
+    //prefer F over E+ for example.
+    
+    private String get_note_from_set(HashSet<String> set)
+    {
+    	for(String str : set)
+    	{
+    		return(str);
+    	}
+    	return "";
+    }
+    
     //IMPLEMENT THIS PROPERLY WHEN NEEDED!!!
     public String get_interval_note_given_root(String root){
     	
-    	return "";
+    	int root_index = Utils.note_to_index.get(root);
+    	int interval_index = root_index + this.offset_from_root % 12;    	    	
+    	return(get_note_from_set(Utils.index_to_note.get(interval_index)));
     }
-
+    
 	
 }
