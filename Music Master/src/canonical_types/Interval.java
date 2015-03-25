@@ -2,7 +2,7 @@ package canonical_types;
 
 import java.util.HashSet;
 
-import general_Utils.Utils;
+import general_utils.Utils;
 
 public class Interval {
 	
@@ -184,7 +184,7 @@ public class Interval {
     {
     	for(String str : set)
     	{
-    		return(str);
+    		return(Utils.preferred_synonyms.get(str));
     	}
     	return "";
     }

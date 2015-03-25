@@ -1,4 +1,4 @@
-package general_Utils;
+package general_utils;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -17,6 +17,9 @@ public class Utils {
 	
 	//Make an init methods to populate all variables
 	
+	//////////////////// T O   D O !!!////////////////////
+	//Normalize names of scales and chords
+	
 	private static String input_file_path = "C:\\Users\\Akash Bharadwaj\\Desktop\\MLT CMU\\Prep\\Personal_Repo\\Music Master\\src\\inputs"; 
 	private static String chords = "\\Chord Formulae";
 	private static String scales = "\\Scale Formulae";
@@ -29,6 +32,7 @@ public class Utils {
 	public static HashMap<Integer, HashSet<String>> index_to_note = new HashMap<Integer, HashSet<String>>();
 	//Maps a note to its index
 	public static HashMap<String, Integer> note_to_index = new HashMap<String, Integer>();
+	public static HashMap<String, String> preferred_synonyms = new HashMap<String, String>();
 	
 	///////////////////TO DO!!///////////////////
 	//Add another hash set for converting E+ to F
@@ -69,6 +73,7 @@ public class Utils {
 		index_to_note.put(9, get_hash_set("A"));//A
 		index_to_note.put(10, get_hash_set("A+","B-"));//A#
 		index_to_note.put(11, get_hash_set("B","C-"));//B	
+		index_to_note.put(12, get_hash_set("C","B+"));
 		
 		//Initializing note to index map
 		note_to_index.put("C", 0);
@@ -92,6 +97,29 @@ public class Utils {
 		note_to_index.put("B-", 10);
 		note_to_index.put("B", 11);
 		note_to_index.put("C-", 11);
+		
+		//Populate preferred synonyms
+		preferred_synonyms.put("C-", "B");
+		preferred_synonyms.put("C", "C");
+		preferred_synonyms.put("C+", "C+");
+		preferred_synonyms.put("D-", "C+");
+		preferred_synonyms.put("D", "D");
+		preferred_synonyms.put("D+", "E-");
+		preferred_synonyms.put("E-", "E-");
+		preferred_synonyms.put("E", "E");
+		preferred_synonyms.put("E+", "F");
+		preferred_synonyms.put("F-", "E");
+		preferred_synonyms.put("F", "F");
+		preferred_synonyms.put("F+", "F+");
+		preferred_synonyms.put("G-", "F+");
+		preferred_synonyms.put("G", "G");
+		preferred_synonyms.put("G+", "G+");
+		preferred_synonyms.put("A-", "G+");
+		preferred_synonyms.put("A", "A");
+		preferred_synonyms.put("A+", "B-");
+		preferred_synonyms.put("B-", "B-");
+		preferred_synonyms.put("B", "B");
+		preferred_synonyms.put("B+", "C");
 		
 		
 	}
